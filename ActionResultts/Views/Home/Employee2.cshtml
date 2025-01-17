@@ -1,0 +1,46 @@
+﻿@model ActionResultts.Models.EmployeeViewModel
+
+<!DOCTYPE html >
+
+
+<html>
+    <head></head>
+
+    <body>
+        @foreach (var item in Model.Employees)
+    {
+        <div>
+            <h1> FirstName : @item.FirstName  </h1>
+            <h1> LastName : @item.LastName  </h1>
+            <div>
+                <span> User Id : @item.Id </span>
+            </div>
+
+        </div>
+
+        
+
+
+    }
+
+    @foreach (var item in Model.Cities)
+    {
+        <h3> @item </h3>
+    }
+
+
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
