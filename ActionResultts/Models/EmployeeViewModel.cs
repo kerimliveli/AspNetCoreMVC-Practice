@@ -7,6 +7,6 @@ namespace ActionResultts.Models
     {
         public List<Employee> Employees { get; set; }
         public List<string> Cities { get; set; }
-
+        public Employee Employee { get; internal set; }
     }
 }
