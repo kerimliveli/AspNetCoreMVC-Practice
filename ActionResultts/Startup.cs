@@ -1,4 +1,6 @@
 using ActionResultts.Context;
+using ActionResultts.Repostories;
+using ActionResultts.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -15,9 +17,19 @@ namespace ActionResultts
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public void ConfigureServices(IServiceCollection services)
         {
-            Configuration = configuration;
+            services.AddControllersWithViews();
+
+            var connectionString = "Data Source=(localdb)\\ProjectModels;Initial Catalog=SchoolDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+
+            services.AddDbContext<SchoolDbContext>(opt =>
+            {
+                opt.UseSqlServer(connectionString);
+            });
+
+            services.AddScoped<IStudentRepostory, StudentRepostory>();
+            services.AddScoped<IStudentService, StudentService>();
         }
 
         public IConfiguration Configuration { get; }

@@ -1,5 +1,6 @@
 ﻿
 using ActionResultts.Context;
+using ActionResultts.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
@@ -8,16 +9,16 @@ namespace ActionResultsTutorial.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly SchoolDbContext _context;
+       private readonly IStudentService studentService;
 
-        public StudentController(SchoolDbContext context)
+        private StudentController(IStudentService studentService)
         {
-            _context = context;
+            this.studentService = studentService;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index (string key = "")
         {
-            return View(await _context.Students.ToListAsync());
+            return View(await _studentService);
         }
     }
 }
